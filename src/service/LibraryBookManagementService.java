@@ -14,11 +14,18 @@ public class LibraryBookManagementService {
         this.books = new HashMap<>();
     }
 
-    private void addBook(){}
-    private void updateBook(){}
-    private void deleteBook(){}
-    private void listAllBooks(){}
-    private void searchBook(){}
+    public void addBook(Book book){
+        if(books.containsKey(book.getBookID())){
+            System.out.println("Book ID already exists!");
+            return;
+        }
+        books.put(book.getBookID(), book);
+        System.out.println("Book added successfully!");
+    }
+    public void updateBook(){}
+    public void deleteBook(){}
+    public void listAllBooks(){}
+    public void searchBook(){}
 
 
 }

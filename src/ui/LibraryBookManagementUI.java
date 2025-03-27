@@ -1,7 +1,8 @@
 package ui;
 
+import model.Book;
+import model.BookAvailabilityStatus;
 import service.LibraryBookManagementService;
-
 import java.util.Scanner;
 
 public class LibraryBookManagementUI {
@@ -58,7 +59,25 @@ public class LibraryBookManagementUI {
     }
 
     // The UI for adding a book
-    private void addBook(){}
+    private void addBook(){
+        System.out.println("------------------------------------------------");
+        System.out.print("Enter Book ID: ");
+        String bookID = read.nextLine();
+        System.out.print("Enter Title: ");
+        String title = read.nextLine();
+        System.out.print("Enter Author: ");
+        String author = read.nextLine();
+        System.out.print("Enter Genre: ");
+        String genre = read.nextLine();
+        System.out.print("Enter Availability Status (AVAILABLE/CHECKED_OUT): ");
+        String availabilityInput = read.nextLine();
+        try {
+            BookAvailabilityStatus availability = BookAvailabilityStatus.valueOf(availabilityInput.toUpperCase());
+            service.addBook(new Book(bookID,title,author,genre,availability));
+        } catch (IllegalArgumentException e) {
+            System.out.println("Invalid availability status! Use AVAILABLE or CHECKED_OUT.");
+        }
+    }
 
     // The UI for updating a book
     private void updateBook(){}
