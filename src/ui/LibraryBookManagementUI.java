@@ -80,7 +80,16 @@ public class LibraryBookManagementUI {
     }
 
     // The UI for updating a book
-    private void updateBook(){}
+    private void updateBook(){
+        System.out.println("------------------------------------------------");
+        System.out.print("Enter BookID : ");
+        String bookID = read.nextLine();
+        try {
+            service.updateBook(bookID,read);
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
 
     // The UI for Deleting a book
     private void deleteBook(){}
