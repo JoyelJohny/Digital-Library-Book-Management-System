@@ -1,5 +1,6 @@
 package ui;
 
+import exception.BookNotFoundException;
 import model.Book;
 import model.BookAvailabilityStatus;
 import service.LibraryBookManagementService;
@@ -92,7 +93,16 @@ public class LibraryBookManagementUI {
     }
 
     // The UI for Deleting a book
-    private void deleteBook(){}
+    private void deleteBook(){
+        System.out.print("Enter Book ID to delete: ");
+        String deleteID = read.nextLine();
+        try {
+            service.deleteBook(deleteID);
+            System.out.println("Book deleted successfully!");
+        } catch (BookNotFoundException e) {
+            System.out.println(e.getMessage());
+        }
+    }
 
     // The UI for viewing all books
     private void listAllBooks(){}

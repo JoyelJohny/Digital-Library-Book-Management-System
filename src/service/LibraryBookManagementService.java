@@ -56,7 +56,13 @@ public class LibraryBookManagementService {
             throw new BookNotFoundException("No Book has been found with given BookID. Please Check for any spelling mistake !");
         }
     }
-    public void deleteBook(){}
+    public void deleteBook(String deleteID) throws BookNotFoundException{
+        if(books.containsKey(deleteID)){
+            books.remove(deleteID);
+        }else{
+            throw new BookNotFoundException("No Book has been found with given BookID. Please Check for any spelling mistake !");
+        }
+    }
     public void listAllBooks(){}
     public void searchBook(){}
 
