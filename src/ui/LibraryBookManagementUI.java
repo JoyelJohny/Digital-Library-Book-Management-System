@@ -64,10 +64,26 @@ public class LibraryBookManagementUI {
         System.out.println("------------------------------------------------");
         System.out.print("Enter Book ID: ");
         String bookID = read.nextLine();
+        if(service.isBookIDExist(bookID)){
+            System.out.println("Book ID already exists!");
+            return;
+        }
+        if(bookID.isBlank()){
+            System.out.println("Book ID cannot be Empty");
+            return;
+        }
         System.out.print("Enter Title: ");
         String title = read.nextLine();
+        if(title.isBlank()){
+            System.out.println("Title cannot be Empty");
+            return;
+        }
         System.out.print("Enter Author: ");
         String author = read.nextLine();
+        if(author.isBlank()){
+            System.out.println("Author cannot be Empty");
+            return;
+        }
         System.out.print("Enter Genre: ");
         String genre = read.nextLine();
         System.out.print("Enter Availability Status (AVAILABLE/CHECKED_OUT): ");

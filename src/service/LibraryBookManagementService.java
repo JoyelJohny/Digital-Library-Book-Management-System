@@ -19,19 +19,24 @@ public class LibraryBookManagementService {
     }
 
     public void addBook(Book book){
-        if(books.containsKey(book.getBookID())){
+        if(isBookIDExist(book.getBookID())){
             System.out.println("Book ID already exists!");
             return;
         }
         books.put(book.getBookID(), book);
         System.out.println("Book added successfully!");
     }
+
     public void updateBook(String bookID, Scanner read) throws BookNotFoundException, EmptyFieldException {
-        if(books.containsKey(bookID)){
+        if(isBookIDExist(bookID)){
             Book book = books.get(bookID);
-            System.out.print("Updating Book : "+book);
+            System.out.println("Updating Book : "+book);
             System.out.print("Enter Book ID: ");
             String newBookID = read.nextLine();
+            if(isBookIDExist(newBookID)){
+                System.out.println("Book ID already exists!");
+                return;
+            }
             System.out.print("Enter Title: ");
             String newTitle = read.nextLine();
             System.out.print("Enter Author: ");
@@ -41,6 +46,12 @@ public class LibraryBookManagementService {
             System.out.print("Enter Availability Status (AVAILABLE/CHECKED_OUT): ");
             String newAvailabilityInput = read.nextLine();
 
+            if (!newBookID.isEmpty() && !newBookID.equals(book.getBookID())){
+                Book newBook = new Book(newBookID,book.getTitle(),book.getAuthor(),book.getGenre(),book.getAvailabilityStatus());
+                books.put(newBookID,newBook);
+                books.remove(book.getBookID());
+                book = newBook;
+            }
             if (!newTitle.isEmpty()) book.setTitle(newTitle);
             if (!newAuthor.isEmpty()) book.setAuthor(newAuthor);
             if (!newGenre.isEmpty()) book.setGenre(newGenre);
@@ -52,17 +63,22 @@ public class LibraryBookManagementService {
                 }
             }
 
+            System.out.println("Updated Book Details successfully");
+
         }else{
             throw new BookNotFoundException("No Book has been found with given BookID. Please Check for any spelling mistake !");
         }
     }
+
     public void deleteBook(String deleteID) throws BookNotFoundException{
-        if(books.containsKey(deleteID)){
+        if(isBookIDExist(deleteID)){
             books.remove(deleteID);
+            System.out.println("Successfully Deleted Book From the collection");
         }else{
             throw new BookNotFoundException("No Book has been found with given BookID. Please Check for any spelling mistake !");
         }
     }
+
     public void listAllBooks(){
         if (books.isEmpty()) {
             System.out.println("No books available.");
@@ -77,8 +93,9 @@ public class LibraryBookManagementService {
             System.out.println("Availability Status : " + book.getAvailabilityStatus());
         }
     }
+
     public Book searchBook(String input) throws BookNotFoundException {
-        if(books.containsKey(input)){
+        if(isBookIDExist(input)){
             return books.get(input);
         }
         return books.values()
@@ -86,6 +103,10 @@ public class LibraryBookManagementService {
                 .filter(book->book.getTitle().equalsIgnoreCase(input))
                 .findFirst()
                 .orElseThrow(()->new BookNotFoundException("No Book has been found with given Title or BookID. Please Check for any spelling mistake !"));
+    }
+
+    public boolean isBookIDExist(String bookID){
+        return books.containsKey(bookID);
     }
 
 
