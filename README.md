@@ -36,3 +36,17 @@ Develop an application system to enable librarians to efficiently **add, update,
    - `CHECKED_OUT`  
 
 ---
+
+### Running Locally
+- Clone the Repository
+```sh
+git clone https://github.com/JoyelJohny/Digital-Library-Book-Management-System.git
+```
+- Change the directory
+```sh
+cd Digital-Library-Book-Management-System
+```
+- Run the below command
+```sh
+java -jar MyProgram.jar
+```
