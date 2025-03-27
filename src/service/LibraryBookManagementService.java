@@ -63,7 +63,20 @@ public class LibraryBookManagementService {
             throw new BookNotFoundException("No Book has been found with given BookID. Please Check for any spelling mistake !");
         }
     }
-    public void listAllBooks(){}
+    public void listAllBooks(){
+        if (books.isEmpty()) {
+            System.out.println("No books available.");
+            return;
+        }
+        for(Book book : books.values()) {
+            System.out.println("----------------------------------------------");
+            System.out.println("BookID : " + book.getBookID());
+            System.out.println("Title : " + book.getTitle());
+            System.out.println("Author : " + book.getAuthor());
+            System.out.println("Genre : " + book.getGenre());
+            System.out.println("Availability Status : " + book.getAvailabilityStatus());
+        }
+    }
     public void searchBook(){}
 
 

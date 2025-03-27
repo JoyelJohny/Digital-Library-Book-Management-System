@@ -105,7 +105,9 @@ public class LibraryBookManagementUI {
     }
 
     // The UI for viewing all books
-    private void listAllBooks(){}
+    private void listAllBooks(){
+        service.listAllBooks();
+    }
 
     // The UI for searching a Book
     private void searchBook(){}
