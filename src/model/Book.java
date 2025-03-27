@@ -1,5 +1,7 @@
 package model;
 
+import exception.EmptyFieldException;
+
 public class Book {
     private String bookID;
     private String title;
