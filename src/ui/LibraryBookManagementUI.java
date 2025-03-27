@@ -110,7 +110,22 @@ public class LibraryBookManagementUI {
     }
 
     // The UI for searching a Book
-    private void searchBook(){}
+    private void searchBook(){
+        System.out.println("--------------------------------------------------------");
+        System.out.println("Enter the BookID or Title to search : ");
+        String input = read.nextLine();
+        try {
+            Book queriedBook = service.searchBook(input);
+            System.out.println("--------------------------------------------------------");
+            System.out.println("BookID : "+queriedBook.getBookID());
+            System.out.println("Title : "+queriedBook.getTitle());
+            System.out.println("Author : "+queriedBook.getAuthor());
+            System.out.println("Genre : "+queriedBook.getGenre());
+            System.out.println("Availability Status : "+queriedBook.getAvailabilityStatus());
+        }catch (Exception e){
+            System.out.println("Error : "+e.getMessage());
+        }
+    }
 
     // The UI for exiting the application
     private void exitApplication(){}

@@ -77,7 +77,16 @@ public class LibraryBookManagementService {
             System.out.println("Availability Status : " + book.getAvailabilityStatus());
         }
     }
-    public void searchBook(){}
+    public Book searchBook(String input) throws BookNotFoundException {
+        if(books.containsKey(input)){
+            return books.get(input);
+        }
+        return books.values()
+                .stream()
+                .filter(book->book.getTitle().equalsIgnoreCase(input))
+                .findFirst()
+                .orElseThrow(()->new BookNotFoundException("No Book has been found with given Title or BookID. Please Check for any spelling mistake !"));
+    }
 
 
 }
