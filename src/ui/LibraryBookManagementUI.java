@@ -128,6 +128,10 @@ public class LibraryBookManagementUI {
     }
 
     // The UI for exiting the application
-    private void exitApplication(){}
+    private void exitApplication(){
+        System.out.println("Exiting the system. Goodbye!");
+        read.close();
+        System.exit(0);
+    }
 
 }
